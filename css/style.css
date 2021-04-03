@@ -11,14 +11,12 @@ body {
 .container {
     display: flex;
     flex-direction: column;
-    /* align-self: center; */
-    /* justify-self: center; */
     position: relative;
     width: 20vw;
-    height: 50vh;
-    /* max-height: max-content; */
+    height: max-content;
     padding: var(--default-padding);
     margin: 0 auto;
+    border: var(--border);
     border-radius: var(--border-radius);
     box-sizing: border-box;
 
@@ -30,7 +28,7 @@ body {
     align-self: center;
     justify-self: center;
     justify-content: flex-end;
-    width: 95%;
+    width: 90%;
     padding: var(--default-padding);
     margin-bottom: var(--default-padding);
     border: var(--border);
@@ -44,7 +42,6 @@ body {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
-    height: max-content;
 
     font-size: 20px;
 }
@@ -54,7 +51,8 @@ body {
     align-items: center;
     justify-content: center;
     width: 30%;
-    height: 20%;
+    height: max-content;
+    padding: 15px;
     margin-bottom: var(--default-padding);
     border: var(--border);
     border-radius: var(--border-radius);
@@ -66,4 +64,8 @@ body {
 
 .btn:active {
     background-color: rgb(204, 199, 233);
+}
+
+.btn--clear {
+    width: 100%;
 }
