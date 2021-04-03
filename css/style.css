@@ -4,8 +4,20 @@
     --border: 2px solid rgb(12, 40, 41);
 }
 
-body {
+body * {
     font-size: 20px;
+}
+
+.container,
+.display,
+.btn {
+    border: var(--border);
+    border-radius: var(--border-radius); 
+}
+
+.container,
+.display {
+    padding: var(--default-padding);
 }
 
 .container {
@@ -14,10 +26,7 @@ body {
     position: relative;
     width: 20vw;
     height: max-content;
-    padding: var(--default-padding);
     margin: 0 auto;
-    border: var(--border);
-    border-radius: var(--border-radius);
     box-sizing: border-box;
 
     background-color: rgb(111, 94, 209);
@@ -29,10 +38,7 @@ body {
     justify-self: center;
     justify-content: flex-end;
     width: 90%;
-    padding: var(--default-padding);
     margin-bottom: var(--default-padding);
-    border: var(--border);
-    border-radius: var(--border-radius);
 
     background-color: cadetblue;
 }
@@ -43,7 +49,7 @@ body {
     flex-wrap: wrap;
     justify-content: space-between;
 
-    font-size: 20px;
+    /* font-size: 20px; */
 }
 
 .btn {
@@ -54,10 +60,8 @@ body {
     height: max-content;
     padding: 15px;
     margin-bottom: var(--default-padding);
-    border: var(--border);
-    border-radius: var(--border-radius);
 
-    font-size: 95%;
+    /* font-size: 95%; */
 
     transition: background-color .2s;
 }
