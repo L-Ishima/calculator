@@ -1,5 +1,6 @@
 const display = document.querySelector('.display');
 const btns = document.querySelectorAll('.btn');
+const btnNumber = document.querySelectorAll('.btn--number');
 const btn1 = document.querySelector('.btn--1');
 const btn2 = document.querySelector('.btn--2');
 const btn3 = document.querySelector('.btn--3');
@@ -17,15 +18,23 @@ const btnSub = document.querySelector('.btn--sub');
 const btnRes = document.querySelector('.btn--res');
 const btnClear = document.querySelector('.btn--clear');
 const results = [];
-// const result = 0;
 
 btns.forEach(function(el) {
     el.addEventListener('click', function() {
-        if (display.innerHTML == 0) {
+        if (display.innerHTML === 0) {
             display.innerHTML = '';
         }
     })
 })
+
+btnNumber.forEach(function(numb) {
+    numb.addEventListener('click', function() {
+       if (display.innerHTML === 'x' || display.innerHTML === '0') {
+            display.innerHTML = '';
+        } 
+    })
+})
+
 
 btnClear.addEventListener('click', function() {
     display.innerHTML = 0;
@@ -66,16 +75,10 @@ btn8.addEventListener('click', function() {
 })
 
 btn9.addEventListener('click', function() {
-    // if (display.innerHTML === 'x') {
-    //     results.push(display.innerHTML);
-    // }
-    if (display.innerHTML === 'x' || display.innerHTML === '0') {
-        display.innerHTML = '';
-    }
-
     display.innerHTML += 9;
     console.log(results);
 })
+
 
 btn0.addEventListener('click', function() {
     display.innerHTML += 0;
@@ -105,7 +108,6 @@ btnSub.addEventListener('click', function() {
 })
 
 btnRes.addEventListener('click', function() {
-    // display.innerHTML += '=';
     let result;
     results.push(display.innerHTML);
     if (results[1] === '*') {
@@ -114,5 +116,6 @@ btnRes.addEventListener('click', function() {
         result = parseInt(results[0]) * parseInt(results[1]);
     }
     console.log(result);
+    display.innerHTML = result;
     results.length = 0;
 })
