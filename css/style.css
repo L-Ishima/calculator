@@ -38,9 +38,15 @@ body * {
     justify-self: center;
     justify-content: flex-end;
     width: 90%;
+    height: 30px;
     margin-bottom: var(--default-padding);
 
     background-color: cadetblue;
+}
+
+.display-clear::after {
+    display: block;
+    content: "0";
 }
 
 .btn__container {

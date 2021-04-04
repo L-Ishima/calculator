@@ -22,16 +22,25 @@ const results = [];
 
 btns.forEach(function(el) {
     el.addEventListener('click', function() {
-        if (display.innerHTML === 0) {
+        if (display.innerHTML === 'x' || display.innerHTML === '/' || display.innerHTML === '+' || display.innerHTML === '-' ) {
             display.innerHTML = '';
+        }
+        if (display.length === 0 && display.innerHTML === "0") {
+            display.classList.add('display-clear');
+            display.innerHTML = null;
+        }
+        if (display.length !== 0) {
+            display.classList.remove('display-clear');
         }
     })
 })
 
-btnNumber.forEach(function(numb) {
-    numb.addEventListener('click', function() {
-       if (display.innerHTML === 'x' || display.innerHTML === '/' || display.innerHTML === '+' || display.innerHTML === '-' || display.innerHTML === '0') {
-            display.innerHTML = '';
+btnOperations.forEach(function(op) {
+    op.addEventListener('click', function() {
+        if (display.innerHTML === "") {
+            results.push(0);
+        } else {
+            results.push(display.innerHTML); 
         } 
     })
 })
@@ -39,7 +48,6 @@ btnNumber.forEach(function(numb) {
 btnClear.addEventListener('click', function() {
     display.innerHTML = 0;
     results.length = 0;
-    console.log(results);
 })
 
 btn1.addEventListener('click', function() {
@@ -76,7 +84,6 @@ btn8.addEventListener('click', function() {
 
 btn9.addEventListener('click', function() {
     display.innerHTML += 9;
-    console.log(results);
 })
 
 btn0.addEventListener('click', function() {
@@ -84,57 +91,49 @@ btn0.addEventListener('click', function() {
 })
 
 btnMulti.addEventListener('click', function() {
-    results.push(display.innerHTML)
     display.innerHTML = 'x';
     results.push('*');
-    console.log(results)
 })
 
 btnDiv.addEventListener('click', function() {
-    results.push(display.innerHTML)
     display.innerHTML = '/';
     results.push('/');
-    console.log(results);
 })
 
 btnSum.addEventListener('click', function() {
-    results.push(display.innerHTML)
     display.innerHTML = '+';
     results.push('+');
-    console.log(results);
 })
 
 btnSub.addEventListener('click', function() {
-    results.push(display.innerHTML)
     display.innerHTML = '-';
     results.push('-');
-    console.log(results);
 })
 
 btnRes.addEventListener('click', function() {
     let result;
     results.push(display.innerHTML);
     if (results[1] === '*') {
-        results.splice(1, 1);
-        console.log(results);
-        result = parseInt(results[0]) * parseInt(results[1]);
+
+        result = parseInt(results[0]) * parseInt(results[2]);
     }
     if (results[1] === '/') {
-        results.splice(1, 1);
-        console.log(results);
-        result = parseInt(results[0]) / parseInt(results[1]);
+
+        result = parseInt(results[0]) / parseInt(results[2]);
     }
     if (results[1] === '+') {
-        results.splice(1, 1);
-        console.log(results);
-        result = parseInt(results[0]) + parseInt(results[1]);
+
+        result = parseInt(results[0]) + parseInt(results[2]);
     }
     if (results[1] === '-') {
-        results.splice(1, 1);
-        console.log(results);
-        result = parseInt(results[0]) - parseInt(results[1]);
+
+        result = parseInt(results[0]) - parseInt(results[2]);
     }
     console.log(result);
     display.innerHTML = result;
+    if (result === 0) {
+        display.innerHTML = null;
+        display.classList.add('display-clear');
+    }
     results.length = 0;
 })
