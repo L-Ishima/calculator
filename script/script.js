@@ -11,6 +11,7 @@ const btn7 = document.querySelector('.btn--7');
 const btn8 = document.querySelector('.btn--8');
 const btn9 = document.querySelector('.btn--9');
 const btn0 = document.querySelector('.btn--0');
+const btnOperations = document.querySelectorAll('.btn--operation');
 const btnMulti = document.querySelector('.btn--multi');
 const btnDiv = document.querySelector('.btn--div');
 const btnSum = document.querySelector('.btn--sum');
@@ -29,12 +30,11 @@ btns.forEach(function(el) {
 
 btnNumber.forEach(function(numb) {
     numb.addEventListener('click', function() {
-       if (display.innerHTML === 'x' || display.innerHTML === '0') {
+       if (display.innerHTML === 'x' || display.innerHTML === '/' || display.innerHTML === '+' || display.innerHTML === '-' || display.innerHTML === '0') {
             display.innerHTML = '';
         } 
     })
 })
-
 
 btnClear.addEventListener('click', function() {
     display.innerHTML = 0;
@@ -79,7 +79,6 @@ btn9.addEventListener('click', function() {
     console.log(results);
 })
 
-
 btn0.addEventListener('click', function() {
     display.innerHTML += 0;
 })
@@ -92,19 +91,24 @@ btnMulti.addEventListener('click', function() {
 })
 
 btnDiv.addEventListener('click', function() {
-    display.innerHTML += '/';
-    result.push(display.innerHTML, '/')
+    results.push(display.innerHTML)
+    display.innerHTML = '/';
+    results.push('/');
+    console.log(results);
 })
 
 btnSum.addEventListener('click', function() {
-    display.innerHTML += '+';
-    result.push(display.innerHTML);
-    console.log(result);
+    results.push(display.innerHTML)
+    display.innerHTML = '+';
+    results.push('+');
+    console.log(results);
 })
 
 btnSub.addEventListener('click', function() {
-    display.innerHTML += '-';
-    result.push(display.innerHTML, '-')
+    results.push(display.innerHTML)
+    display.innerHTML = '-';
+    results.push('-');
+    console.log(results);
 })
 
 btnRes.addEventListener('click', function() {
@@ -114,6 +118,21 @@ btnRes.addEventListener('click', function() {
         results.splice(1, 1);
         console.log(results);
         result = parseInt(results[0]) * parseInt(results[1]);
+    }
+    if (results[1] === '/') {
+        results.splice(1, 1);
+        console.log(results);
+        result = parseInt(results[0]) / parseInt(results[1]);
+    }
+    if (results[1] === '+') {
+        results.splice(1, 1);
+        console.log(results);
+        result = parseInt(results[0]) + parseInt(results[1]);
+    }
+    if (results[1] === '-') {
+        results.splice(1, 1);
+        console.log(results);
+        result = parseInt(results[0]) - parseInt(results[1]);
     }
     console.log(result);
     display.innerHTML = result;
