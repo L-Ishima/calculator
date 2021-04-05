@@ -46,8 +46,9 @@ btnOperations.forEach(function(op) {
 })
 
 btnClear.addEventListener('click', function() {
-    display.innerHTML = 0;
+    display.innerHTML = "";
     results.length = 0;
+    display.classList.add('display-clear');
 })
 
 btn1.addEventListener('click', function() {
@@ -114,19 +115,20 @@ btnRes.addEventListener('click', function() {
     let result;
     results.push(display.innerHTML);
     if (results[1] === '*') {
-
         result = parseInt(results[0]) * parseInt(results[2]);
     }
     if (results[1] === '/') {
-
-        result = parseInt(results[0]) / parseInt(results[2]);
+        if (results[2] === '0') {
+            alert('Завязывай, на ноль делить нельзя!');
+            result = 0;
+        } else {
+            result = parseInt(results[0]) / parseInt(results[2]);
+        }
     }
     if (results[1] === '+') {
-
         result = parseInt(results[0]) + parseInt(results[2]);
     }
     if (results[1] === '-') {
-
         result = parseInt(results[0]) - parseInt(results[2]);
     }
     console.log(result);
@@ -134,6 +136,10 @@ btnRes.addEventListener('click', function() {
     if (result === 0) {
         display.innerHTML = null;
         display.classList.add('display-clear');
+    }
+    if (result === NaN || result === Infinity) {
+        display.innerHTML = 0;
+        alert('Ошибка!');
     }
     results.length = 0;
 })
