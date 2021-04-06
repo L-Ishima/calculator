@@ -37,12 +37,16 @@ btns.forEach(function(el) {
 
 btnOperations.forEach(function(op) {
     op.addEventListener('click', function() {
-        if (display.innerHTML === "") {
-            results.push(0);
-        } else {
-            results.push(display.innerHTML); 
-        } 
-    })
+        display.innerHTML === "" ? results.push(0) : results.push(display.innerHTML);
+        if (typeof results[0] == 'number' && results.length === 2) {
+            results.splice(1,1);
+        }
+        if (results.length === 3) {
+            getResult();
+            // results.push(results[0]);
+            console.log(results);
+        }
+    })   
 })
 
 btnClear.addEventListener('click', function() {
@@ -111,11 +115,13 @@ btnSub.addEventListener('click', function() {
     results.push('-');
 })
 
-btnRes.addEventListener('click', function() {
+function getResult() {
+
     let result;
-    results.push(display.innerHTML);
+    // results.push(display.innerHTML);
     if (results[1] === '*') {
         result = parseInt(results[0]) * parseInt(results[2]);
+        console.log(results);
     }
     if (results[1] === '/') {
         if (results[2] === '0') {
@@ -123,23 +129,33 @@ btnRes.addEventListener('click', function() {
             result = 0;
         } else {
             result = parseInt(results[0]) / parseInt(results[2]);
+            console.log(results);
         }
     }
     if (results[1] === '+') {
         result = parseInt(results[0]) + parseInt(results[2]);
+        console.log(results);
     }
     if (results[1] === '-') {
         result = parseInt(results[0]) - parseInt(results[2]);
+        console.log(results);
     }
     console.log(result);
+    console.log(results);
     display.innerHTML = result;
     if (result === 0) {
         display.innerHTML = null;
         display.classList.add('display-clear');
     }
-    if (result === NaN || result === Infinity) {
+    if (result === NaN || result === Infinity || result === undefined) {
         display.innerHTML = 0;
         alert('Ошибка!');
     }
     results.length = 0;
+    results.push(result);
+}
+    
+btnRes.addEventListener('click', function() {
+    results.push(display.innerHTML);
+    getResult(); 
 })
